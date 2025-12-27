@@ -1,0 +1,44 @@
+// program to get the number and 2 positions from the user and OFF them
+// Input = 2523
+// Output = 2451
+#include<iostream>
+using namespace std;
+
+typedef unsigned int UINT;
+
+UINT OffBitMultiple(UINT iNo, UINT iPos1, UINT iPos2)
+{
+    UINT iMask1 = 1, iMask2 = 1, iMask = 0;      
+    UINT iResult = 0;
+
+    iMask1 = iMask1 << (iPos1 - 1);       
+    iMask2 = iMask2 << (iPos2 - 1);       
+
+    iMask1 = ~iMask1;
+    iMask2 = ~iMask2;
+
+    iMask = iMask1 & iMask2;
+    iResult = iNo & iMask;                      
+
+    return iResult;
+}
+
+int main()
+{
+    UINT iValue = 0, iRet = 0, iLocation1 = 0, iLocation2 = 0;
+
+    cout<<"Enter the number : \n";
+    cin>>iValue;
+
+    cout<<"Enter the First Location : \n";
+    cin>>iLocation1;
+
+    cout<<"Enter the Second Location : \n";
+    cin>>iLocation2;
+
+    iRet = OffBitMultiple(iValue,iLocation1,iLocation2);
+
+    cout<<"Updated Number is : "<<iRet<<"\n";
+
+    return 0;
+}
